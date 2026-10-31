@@ -27,7 +27,11 @@ tokio = { version = "1.28.0", features = [
 ] }
 tokio-stream = { version = "0.1", features = ["sync"] }
 tracing = "0.1"
-zstd = "0.13"
+# ePHPm fork: bumped 0.13 -> 0.14 to clear RUSTSEC-2026-0391/0398/0403
+# (zstd/zstd-safe). The only zstd calls here are the high-level
+# bulk::compress_to_buffer / bulk::decompress_to_buffer, whose signatures are
+# unchanged in 0.14. See ephpm/ephpm#648.
+zstd = "0.14"
 
 [dev-dependencies]
 assert-json-diff = "2"
